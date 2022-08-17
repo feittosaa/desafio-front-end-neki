@@ -1,14 +1,40 @@
-import "./SkillCard.css"
+import { useState } from "react";
+import ModalDelete from "../ModalDelete/ModalDelete";
+import "./SkillCard.css";
+import API from "../../API";
+import { useNavigate } from "react-router-dom";
 
-function SkillCard(skillImg, skillName, skillDesc, skillVersion) {
+function SkillCard({ imageUrl, name, description, version, id }) {
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    var navigate = useNavigate();
+
+    function deletar(e) {
+        e.preventDefault();
+        API.delete(`/api/skills/${id}`)
+            .then(response => {
+                console.log(response.data)
+            })
+            .catch(error => console.log(error))
+        handleClose()
+        navigate({ replace: true });
+        window.location.reload();
+    }
+
     return (
         <div>
             <div>
-                <img src={skillImg} className="skillImg" alt={skillName} />
-                <h5>{skillDesc}</h5>
-                <h6>{skillVersion}</h6>
+                <div className="skillCardContainer" onClick={() => handleShow()}>
+                    <img src={imageUrl} className="skillImg" alt={name} />
+                    <h5 className="skillCardDesc">{description}</h5>
+                    <h4 className="skillCardName">{name}</h4>
+                    <h6 className="skillCardVersion">{version}</h6>
+                    <ModalDelete acao={(e) => deletar(e)} show={show} handleClose={handleClose} title={`DELETAR SKILL ?`}
+                        texto={`Você tem certeza que deseja deletar a skill?`} />
+                </div>
             </div>
-            <h4>{skillName}</h4>
         </div>
     );
 }

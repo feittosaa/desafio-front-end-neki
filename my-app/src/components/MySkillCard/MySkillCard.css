@@ -1,0 +1,72 @@
+.mySkillContainer {
+    width: 150px;
+    height: 150px;
+    padding: 15px;
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    -o-border-radius: 100%;
+    background-color: #ccc;
+    color: #222;
+    padding: 70% 10%;
+    margin: 50% 0;
+}
+
+.mySkillContainerAdd {
+    width: 150px;
+    height: 150px;
+    padding: 15px;
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    -o-border-radius: 100%;
+    background-color: #ccc;
+    padding: 70% 10%;
+    margin: 50% 0;
+}
+
+.mySkillContainer:hover {
+    cursor: pointer;
+    transform: scale(1.04);
+    background-color: #a10000;
+}
+
+.mySkillContainerAdd:hover {
+    cursor: pointer;
+    transform: scale(1.04);
+}
+
+.mySkillName {
+    font-size: 1.4rem;
+    text-align: center;
+    color: #222;
+    max-width: 100%;
+    word-wrap: break-word;
+}
+
+.mySkillAdd {
+    font-size: 1.4rem;
+    text-align: center;
+    color: #222;
+    max-width: 100%;
+    word-wrap: break-word;
+    justify-content: center;
+    margin-left: 36px;
+    margin-top: -15px;
+}
+
+.mySkillRate {
+    font-size: 1rem;
+    text-align: center;
+    color: #ccc;
+    padding: 50% 0;
+}
+
+.mySkillRateAdd {
+    font-size: 1rem;
+    text-align: center;
+    color: #ccc;
+    padding: 44% 0;
+}

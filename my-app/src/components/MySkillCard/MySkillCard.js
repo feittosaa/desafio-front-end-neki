@@ -1,12 +1,12 @@
 import "./MySkillCard.css"
 
-function MySkillCard(mySkillName, mySkillRate) {
+function MySkillCard({ skill, knowledgeLevel }) {
     return (
         <div>
-            <div>
-                <h5>{mySkillName}</h5>
+            <div className="mySkillContainer">
+                <h5 className="mySkillName">{skill}</h5>
+                <h4 className="mySkillRate">{knowledgeLevel}</h4>
             </div>
-            <h4>{mySkillRate}</h4>
         </div>
     );
 }

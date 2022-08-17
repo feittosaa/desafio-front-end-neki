@@ -1,0 +1,58 @@
+.ModalFooter {
+    justify-content: left;
+    margin-left: 5%;
+    margin-top: 10%;
+}
+
+.error-message {
+    color: red;
+}
+
+.botoesModal {
+    transition: transform 0.1s linear;
+    margin-right: 120px;
+}
+
+.botoesModal:hover {
+    transform: scale(1.1);
+}
+
+.stylesButton {
+    padding: 8px;
+    background-color: #23646abb;
+    color: #fff;
+    font-size: 15px;
+    border: none;
+    border-radius: 3px;
+    justify-content: space-around;
+    justify-items: center;
+}
+
+.stylesButton2 {
+    padding: 8px;
+    background-color: #fd2020bb;
+    color: #fff;
+    font-size: 15px;
+    border: none;
+    border-radius: 3px;
+    justify-content: space-around;
+    justify-items: center;
+}
+
+
+.botaoCancelar {
+    justify-content: right;
+    display: flex;
+    margin-left: 30%;
+    margin-top: -55px;
+}
+
+.salvar {
+    width: 20px;
+    margin-right: 8px;
+}
+
+
+.styleDiv {
+    margin-top: 1rem;
+}

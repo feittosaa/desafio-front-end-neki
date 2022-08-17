@@ -1,4 +1,65 @@
 .skillImg {
     width: 90%;
+    max-height: 90%;
     padding-bottom: 10px;
+}
+
+.skillImgAdd {
+    padding: 50px 0;
+    margin: 4%;
+}
+
+.skillCardContainer {
+    background-color: #ccc;
+    color: #222;
+    text-align: center;
+    padding: 10px;
+    margin: 4%;
+    margin-bottom: 50px;
+    max-height: 500px;
+    width: 200px;
+    word-wrap: break-word;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+
+.skillCardContainerAdd {
+    background-color: #ccc;
+    color: #222;
+    text-align: center;
+    padding: 10px;
+    margin: 4%;
+    margin-bottom: 50px;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+
+.skillCardContainer:hover {
+    cursor: pointer;
+    transform: scale(1.04);
+    background-color: #a10000;
+}
+
+.skillCardContainerAdd:hover {
+    cursor: pointer;
+    transform: scale(1.04);
+}
+
+
+.skillCardDesc {
+    font-size: 1rem;
+}
+
+.skillCardVersion {
+    font-size: 0.8rem;
+}
+
+.skillCardName {
+    font-size: 1.4rem;
 }
