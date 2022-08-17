@@ -1,0 +1,17 @@
+.user {
+    width: 300px !important;
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    -o-border-radius: 100%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #ccc;
+}
+
+.line {
+    border: 1px solid #ccc;
+    width: 90%;
+    margin: 40px 5%;
+}
