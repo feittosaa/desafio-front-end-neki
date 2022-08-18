@@ -8,6 +8,8 @@ import API from "../../API";
 import { useEffect, useState } from "react";
 import ModalSkillAdd from "../../components/ModalSkillAdd/ModalSkillAdd";
 import MySkills from "../../components/MySkills/MySkills";
+import ModalMySkillAdd from "../../components/ModalMySkillAdd/ModalMySkillAdd";
+import MySkillsAdd from "../../components/MySkillsAdd/MySkillsAdd";
 
 function Home() {
 
@@ -46,12 +48,7 @@ function Home() {
             <div className="container">
                 <div className="row">
                     <img src={user} className="user" />
-                    <div className="col-lg-1 col-md-1 col-sm-1 mySkill">
-                        <div className="mySkillContainerAdd">
-                            <img className="mySkillAdd" src={plus} alt="plus" width="60px" />
-                            <h4 className="mySkillRateAdd">adicionar skill a sua lista</h4>
-                        </div>
-                    </div>
+                    <MySkillsAdd />
                     <MySkills />
                 </div>
             </div>

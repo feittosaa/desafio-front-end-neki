@@ -8,13 +8,14 @@ import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import * as yup from "yup";
-import "./Login.css";
+import "./Cadastro.css";
 
 
-function Login() {
+function Cadastro() {
 
     const [usuario, setUsuario] = useState('')
     const [senha, setSenha] = useState('')
+    const [confirmarSenha, setConfirmarSenha] = useState('')
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -22,7 +23,8 @@ function Login() {
 
     const validationLogin = yup.object({
         usuario: yup.string().required("Campo obrigatório !"),
-        senha: yup.string().required("Campo obrigatório !")
+        senha: yup.string().required("Campo obrigatório !"),
+        confirmarSenha: yup.string().required("Campo obrigatório !")
 
     }).required();
 
@@ -34,15 +36,17 @@ function Login() {
         resolver: yupResolver(validationLogin),
     });
 
-    const handleLogin = (e) => {
+    const handleCadastro = (e) => {
         e.preventDefault();
 
-        if (usuario != "" && senha != "") {
+        if (usuario != "" && senha != "" && senha == confirmarSenha) {
             localStorage.setItem('email', usuario);
             localStorage.setItem('senha', senha);
-            navigate('/home')
+            localStorage.setItem('confirmarSenha', confirmarSenha);
+            navigate('/login')
         } else {
             setShow(true)
+            alert("Dados incorretos!")
         }
 
     }
@@ -51,9 +55,15 @@ function Login() {
         evt.preventDefault()
         console.log(usuario)
         console.log(senha)
+        console.log(confirmarSenha)
     }
 
     const [valuesPassword, setValuesPassword] = React.useState({
+        password: "",
+        showPassword: false,
+    });
+
+    const [valuesConfirmPassword, setValuesConfirmPassword] = React.useState({
         password: "",
         showPassword: false,
     });
@@ -67,6 +77,9 @@ function Login() {
     const handleClickShowPassword = () => {
         setValuesPassword({ ...valuesPassword, showPassword: !valuesPassword.showPassword });
     };
+    const handleClickShowConfirmPassword = () => {
+        setValuesConfirmPassword({ ...valuesConfirmPassword, showConfirmPassword: !valuesConfirmPassword.showConfirmPassword });
+    };
     const handleClickShowLogin = () => {
         setValuesLogin({ ...valuesLogin, showLogin: !valuesLogin.showLogin });
     };
@@ -74,8 +87,8 @@ function Login() {
     return (
         <>
             <div className="cardLogin">
-                <div className="loginContainer">
-                    <Form onSubmit={handleSubmit(handleLogin)}>
+                <div className="cadastroContainer">
+                    <Form onSubmit={handleSubmit(handleCadastro)}>
                         <div>
                             <label className="senhaInput">Usuário</label>
                             <Input
@@ -104,19 +117,34 @@ function Login() {
                             />
                             <p className="error-message">{errors.senha?.message}</p>
                         </div>
-                        <a onClick={handleLogin} className="textoLogin">
+                        <div>
+                            <label className="senhaInput">Confirmar Senha</label>
+                            <Input
+                                type={valuesConfirmPassword.showConfirmPassword ? "text" : "password"}
+                                className="Input"
+                                {...register("confirmarSenha")}
+                                onChange={evt => setConfirmarSenha(evt.target.value)}
+                                value={confirmarSenha}
+                                endAdornment={
+                                    <inputAdornment>
+                                        <IconButton onClick={handleClickShowConfirmPassword}>
+                                            {valuesConfirmPassword.showConfirmPassword ? <Visibility /> : <VisibilityOff />}
+                                        </IconButton>
+                                    </inputAdornment>
+                                }
+                            />
+                            <p className="error-message">{errors.confirmarSenha?.message}</p>
+                        </div>
+                        <a onClick={handleCadastro} className="textoLogin">
                             <button type="submit" className="botaoLogin">
-                                Login
+                                Criar conta
                             </button>
                         </a>
                     </Form>
-                    <a className="textoConta" href='/cadastrar'>
-                        Criar conta
-                    </a>
                 </div>
             </div>
         </>
     );
 }
 
-export default Login;
+export default Cadastro;

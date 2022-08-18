@@ -1,0 +1,89 @@
+.loginContainer {
+    background-color: rgb(22, 22, 22);
+    height: 500px;
+    width: 500px;
+    border-radius: 20px;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    align-items: center;
+    padding-top: 3%;
+    color: #eee;
+    border: 1px solid #111;
+}
+
+.cardLogin {
+    padding-top: 20vh;
+}
+
+.textoLogin {
+    text-decoration: none;
+    color: black;
+}
+
+.botaoLogin:active {
+    background: #444;
+}
+
+.botaoLogin:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 0.20em black;
+}
+
+.Input {
+    width: 365px;
+    height: 36px;
+    margin-top: 2%;
+    background: #eee;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+}
+
+.senhaInput {
+    margin: 5%;
+    margin-left: 35px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.4rem;
+    text-align: center;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    color: #eee;
+}
+
+.botaoLogin {
+    margin: auto;
+    margin-bottom: 12px;
+    width: 188px;
+    height: 36px;
+    background: #fff;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    border-radius: 6px;
+    line-height: 24px;
+    padding-top: 5px;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+    border: none;
+    transition: transform 0.1s linear;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+    margin-top: 40px;
+}
+
+.textoConta{
+    color: #eee;
+    text-decoration: none;
+}
+
+.textoConta:hover{
+    color: #666;
+}

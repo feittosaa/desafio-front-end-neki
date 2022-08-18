@@ -16,7 +16,7 @@
     padding: 10px;
     margin: 4%;
     margin-bottom: 50px;
-    max-height: 500px;
+    height: 300px;
     width: 200px;
     word-wrap: break-word;
     border-radius: 12px;
@@ -32,6 +32,7 @@
     text-align: center;
     padding: 10px;
     margin: 4%;
+    height: 300px;
     margin-bottom: 50px;
     border-radius: 12px;
     -webkit-border-radius: 12px;

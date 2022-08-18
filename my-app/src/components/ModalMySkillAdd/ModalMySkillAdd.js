@@ -1,4 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from "react";
 import { Modal } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
@@ -9,16 +10,17 @@ import cancel from "../../assets/cancelar.png";
 import save from "../../assets/salvar.png";
 import "./ModalMySkillAdd.css";
 
-export default function ModalMySkillAdd({ show, handleClose }) {
+export default function ModalSkillAdd({ show, handleClose }) {
+
+    const [skill, setSkill] = useState();
+    const [knowledgeLevel, setKnowledgeLevel] = useState();
+
 
     var navigate = useNavigate();
 
     const validationPost = yup.object({
-        id: yup.string().required("Campo obrigatório !"),
-        name: yup.string().required("Campo obrigatório !"),
-        imageUrl: yup.string().required("Campo obrigatório !"),
-        description: yup.string().required("Campo obrigatório !"),
-        version: yup.string(),
+        skill: yup.string().required("Campo obrigatório !"),
+        knowledgeLevel: yup.string().required("Campo obrigatório !"),
     }).required();
 
     const update = () => {
@@ -37,35 +39,22 @@ export default function ModalMySkillAdd({ show, handleClose }) {
         resolver: yupResolver(validationPost),
     });
 
-    const createSkill = (dados, e) => {
+    function createSkill(e) {
         e.preventDefault();
-        var data = new FormData();
-
-        const myJSON = new Blob(
-            [
-                JSON.stringify({
-                    knowledgeLevel: dados.knowledgeLevel,
-                    skill: dados.skill,
-                }),
-            ],
+        API.post(`/api/skills`, {
+            skill: skill,
+            knowledgeLevel: knowledgeLevel,
+        },
             {
-                type: "application/json",
-            }
-        );
-
-        data.append("skills", myJSON, { contentType: "application/json" });
-
-        var config = {
-            method: "post",
-            url: `/api/skills`,
-            data: data,
-        };
-
-        API(config)
-            .then(function (response) {
-                console.log(JSON.stringify(response.data));
-                alert("Skill cadastrada com sucesso");
-                update();
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+            },
+        )
+            .then(response => {
+                console.log(response.data)
+                update()
             })
             .catch(function (error) {
                 if (error.response.status === 400) {
@@ -83,25 +72,27 @@ export default function ModalMySkillAdd({ show, handleClose }) {
                     <div>
                         <div className="titulo"><b>Skill*</b></div>
                         <input
-                            {...register("skill")}
+                            {...register("name")}
                             placeholder="Skill"
                             className="inputNome"
+                            onChange={(e) => setSkill(e.target.value)}
                             type="text"
                         />
                         <p className="error-message">{errors.name?.message}</p>
                     </div>
                     <div className="styleDiv">
-                        <div className="titulo"><b>Nivel de Conhecimento</b></div>
+                        <div className="titulo"><b>Nivel de Conhecimento*</b></div>
                         <input
                             {...register("knowledgeLevel")}
                             type="text"
                             placeholder="Nivel de Conhecimento"
+                            onChange={(e) => setKnowledgeLevel(e.target.value)}
                         />
-                        <p className="error-message">{errors.version?.message}</p>
+                        <p className="error-message">{errors.description?.message}</p>
                     </div>
                     <Modal.Footer className="ModalFooter">
                         <div className="botaoCriar botoesModal">
-                            <button className='stylesButton' type="submit">
+                            <button className='stylesButton' type="submit" onClick={(e) => createSkill(e)}>
                                 <img className="salvar" src={save} alt="create" />
                                 Criar
                             </button>

@@ -1,8 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import API from "../../API";
 import ModalDelete from "../ModalDelete/ModalDelete";
 import "./SkillCard.css";
-import API from "../../API";
-import { useNavigate } from "react-router-dom";
 
 function SkillCard({ imageUrl, name, description, version, id }) {
 
@@ -30,6 +30,7 @@ function SkillCard({ imageUrl, name, description, version, id }) {
                     <img src={imageUrl} className="skillImg" alt={name} />
                     <h5 className="skillCardDesc">{description}</h5>
                     <h4 className="skillCardName">{name}</h4>
+                    <h6 className="skillCardVersion">{id}</h6>
                     <h6 className="skillCardVersion">{version}</h6>
                 </div>
                 <ModalDelete acao={(e) => deletar(e)} show={show} handleClose={handleClose} title={`DELETAR SKILL ?`}

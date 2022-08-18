@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import API from "../../API";
 import MySkillCard from "../../components/MySkillCard/MySkillCard";
-import ModalMySkillAdd from "../ModalMySkillAdd/ModalMySkillAdd";
 import "./MySkills.css";
 
 function MySkills() {
@@ -10,6 +9,14 @@ function MySkills() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [mySkill, setMySkill] = useState([]);
+    const [id, setId] = useState()
+    const [knowledgeLevel, setKnowledgeLevel] = useState()
+
+    const update = () => {
+        setTimeout(() => {
+            window.location.reload();
+        }, 800);
+    }
 
     useEffect(() => {
         const catchData = async () => {
@@ -21,12 +28,30 @@ function MySkills() {
         catchData();
     }, []);
 
+    function alterar(e) {
+        e.preventDefault();
+        API.put(`/api/userSkills/${id}`, {
+            knowledgeLevel: knowledgeLevel,
+        },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+            },
+        )
+            .then(response => {
+                console.log(response.data)
+                update()
+            })
+            .catch(error => console.log(error))
+    }
+
     const arrayMySkill = mySkill;
 
     return (
         <div className="col-lg-1 col-md-1 col-sm-1 mySkill">
             <div>
-                <ModalMySkillAdd show={show} handleClose={handleClose} />
                 {arrayMySkill
                     .map((t, index) => {
                         return (
