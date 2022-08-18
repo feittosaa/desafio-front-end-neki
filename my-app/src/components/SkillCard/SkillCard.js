@@ -26,14 +26,14 @@ function SkillCard({ imageUrl, name, description, version, id }) {
     return (
         <div>
             <div>
-                <div className="skillCardContainer" onClick={() => handleShow()}>
+                <div className="skillCardContainer" onClick={() => handleShow()} title="Clique para Deletar">
                     <img src={imageUrl} className="skillImg" alt={name} />
                     <h5 className="skillCardDesc">{description}</h5>
                     <h4 className="skillCardName">{name}</h4>
                     <h6 className="skillCardVersion">{version}</h6>
-                    <ModalDelete acao={(e) => deletar(e)} show={show} handleClose={handleClose} title={`DELETAR SKILL ?`}
-                        texto={`Você tem certeza que deseja deletar a skill?`} />
                 </div>
+                <ModalDelete acao={(e) => deletar(e)} show={show} handleClose={handleClose} title={`DELETAR SKILL ?`}
+                    texto={`Você tem certeza que deseja deletar a skill?`} />
             </div>
         </div>
     );

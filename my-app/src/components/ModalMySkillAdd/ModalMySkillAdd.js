@@ -1,5 +1,4 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useState } from "react";
 import { Modal } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
@@ -8,18 +7,14 @@ import * as yup from "yup";
 import API from "../../API";
 import cancel from "../../assets/cancelar.png";
 import save from "../../assets/salvar.png";
-import "./ModalSkillAdd.css";
+import "./ModalMySkillAdd.css";
 
-export default function ModalSkillAdd({ show, handleClose }) {
-
-    const [name, setName] = useState();
-    const [version, setVersion] = useState();
-    const [description, setDescription] = useState();
-    const [imageUrl, setImageUrl] = useState();
+export default function ModalMySkillAdd({ show, handleClose }) {
 
     var navigate = useNavigate();
 
     const validationPost = yup.object({
+        id: yup.string().required("Campo obrigatório !"),
         name: yup.string().required("Campo obrigatório !"),
         imageUrl: yup.string().required("Campo obrigatório !"),
         description: yup.string().required("Campo obrigatório !"),
@@ -42,24 +37,35 @@ export default function ModalSkillAdd({ show, handleClose }) {
         resolver: yupResolver(validationPost),
     });
 
-    function createSkill(e) {
+    const createSkill = (dados, e) => {
         e.preventDefault();
-        API.post(`/api/skills`, {
-            name: name,
-            version: version,
-            description: description,
-            imageUrl: imageUrl,
-        },
+        var data = new FormData();
+
+        const myJSON = new Blob(
+            [
+                JSON.stringify({
+                    knowledgeLevel: dados.knowledgeLevel,
+                    skill: dados.skill,
+                }),
+            ],
             {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Accept: 'application/json',
-                },
-            },
-        )
-            .then(response => {
-                console.log(response.data)
-                update()
+                type: "application/json",
+            }
+        );
+
+        data.append("skills", myJSON, { contentType: "application/json" });
+
+        var config = {
+            method: "post",
+            url: `/api/skills`,
+            data: data,
+        };
+
+        API(config)
+            .then(function (response) {
+                console.log(JSON.stringify(response.data));
+                alert("Skill cadastrada com sucesso");
+                update();
             })
             .catch(function (error) {
                 if (error.response.status === 400) {
@@ -75,51 +81,27 @@ export default function ModalSkillAdd({ show, handleClose }) {
             <Modal.Body className='modalBody'>
                 <Form onSubmit={handleSubmit(createSkill)}>
                     <div>
-                        <div className="titulo"><b>Nome*</b></div>
+                        <div className="titulo"><b>Skill*</b></div>
                         <input
-                            {...register("name")}
-                            placeholder="Nome"
+                            {...register("skill")}
+                            placeholder="Skill"
                             className="inputNome"
-                            onChange={(e) => setName(e.target.value)}
                             type="text"
                         />
                         <p className="error-message">{errors.name?.message}</p>
                     </div>
                     <div className="styleDiv">
-                        <div className="titulo"><b>Descricao*</b></div>
+                        <div className="titulo"><b>Nivel de Conhecimento</b></div>
                         <input
-                            {...register("description")}
+                            {...register("knowledgeLevel")}
                             type="text"
-                            placeholder="Descricao"
-                            onChange={(e) => setDescription(e.target.value)}
-                        />
-                        <p className="error-message">{errors.description?.message}</p>
-                    </div>
-                    <div className="styleDiv">
-                        <div className="titulo"><b>Versão</b></div>
-                        <input
-                            {...register("version")}
-                            type="text"
-                            placeholder="Versão"
-                            onChange={(e) => setVersion(e.target.value)}
+                            placeholder="Nivel de Conhecimento"
                         />
                         <p className="error-message">{errors.version?.message}</p>
                     </div>
-                    <div>
-                        <div className="styleDiv">
-                            <div className="titulo"><b>Imagem*</b></div>
-                            <input
-                                {...register("imageUrl")}
-                                type="text"
-                                placeholder="Url da Imagem"
-                                onChange={(e) => setImageUrl(e.target.value)}
-                            />
-                            <p className="error-message">{errors.imageUrl?.message}</p>
-                        </div>
-                    </div>
                     <Modal.Footer className="ModalFooter">
                         <div className="botaoCriar botoesModal">
-                            <button className='stylesButton' type="submit" onClick={(e) => createSkill(e)}>
+                            <button className='stylesButton' type="submit">
                                 <img className="salvar" src={save} alt="create" />
                                 Criar
                             </button>

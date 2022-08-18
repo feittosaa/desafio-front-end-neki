@@ -7,6 +7,7 @@ import plus from "../../assets/plus.png"
 import API from "../../API";
 import { useEffect, useState } from "react";
 import ModalSkillAdd from "../../components/ModalSkillAdd/ModalSkillAdd";
+import MySkills from "../../components/MySkills/MySkills";
 
 function Home() {
 
@@ -51,26 +52,10 @@ function Home() {
                             <h4 className="mySkillRateAdd">adicionar skill a sua lista</h4>
                         </div>
                     </div>
-                    <div className="col-lg-1 col-md-1 col-sm-1 mySkill">
-                        <MySkillCard skill="teste" knowledgeLevel="Nível de conhecimento: 4" />
-                    </div>
-                    <div className="col-lg-1 col-md-1 col-sm-1 mySkill">
-                        <div>
-                            {arrayMySkill
-                                .map((t, index) => {
-                                    return (
-                                        <div key={index}>
-                                            <MySkillCard
-                                                skill={t.skill}
-                                                knowledgeLevel={`Nível de conhecimento: ${t.knowledgeLevel}`}
-                                            />
-                                        </div>
-                                    );
-                                })}
-                        </div>
-                    </div>
+                    <MySkills />
                 </div>
             </div>
+
             <div className="line"></div>
 
             <div className="Skills">
@@ -89,6 +74,7 @@ function Home() {
                                     <div className="col-lg-2 col-md-2 col-sm-2">
                                         <div key={index}>
                                             <SkillCard
+                                                id={t.id}
                                                 imageUrl={t.imageUrl}
                                                 description={t.description}
                                                 name={t.name}
