@@ -16,11 +16,11 @@ function SkillCard({ imageUrl, name, description, version, id }) {
         API.delete(`/api/skills/${id}`)
             .then(response => {
                 console.log(response.data)
+                navigate({ replace: true });
+                window.location.reload();
             })
             .catch(error => console.log(error))
         handleClose()
-        navigate({ replace: true });
-        window.location.reload();
     }
 
     return (

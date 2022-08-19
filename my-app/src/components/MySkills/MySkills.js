@@ -5,11 +5,8 @@ import "./MySkills.css";
 
 function MySkills() {
 
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
     const [mySkill, setMySkill] = useState([]);
-    const [id, setId] = useState()
+    const [skill, setSkill] = useState([]);
     const [knowledgeLevel, setKnowledgeLevel] = useState()
 
     const update = () => {
@@ -30,7 +27,7 @@ function MySkills() {
 
     function alterar(e) {
         e.preventDefault();
-        API.put(`/api/userSkills/${id}`, {
+        API.put(`/api/userSkills/${skill}`, {
             knowledgeLevel: knowledgeLevel,
         },
             {
@@ -50,21 +47,21 @@ function MySkills() {
     const arrayMySkill = mySkill;
 
     return (
-        <div className="col-lg-1 col-md-1 col-sm-1 mySkill">
-            <div>
-                {arrayMySkill
-                    .map((t, index) => {
-                        return (
-                            <div key={index}>
+        <>
+            {arrayMySkill
+                .map((t, index) => {
+                    return (
+                        <div className="col-lg-1 col-md-1 col-sm-1 mySkill">
+                            <div key={index} >
                                 <MySkillCard
                                     skill={t.skill}
                                     knowledgeLevel={`Nível de conhecimento: ${t.knowledgeLevel}`}
                                 />
                             </div>
-                        );
-                    })}
-            </div>
-        </div>
+                        </div>
+                    );
+                })}
+        </>
     )
 }
 

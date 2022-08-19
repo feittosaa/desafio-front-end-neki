@@ -1,28 +1,28 @@
 .mySkillContainer {
-    width: 150px;
-    height: 150px;
+    width: 15vh;
+    height: 15vh;
     padding: 15px;
     border-radius: 100%;
     -webkit-border-radius: 100%;
     -moz-border-radius: 100%;
     -ms-border-radius: 100%;
     -o-border-radius: 100%;
-    background-color: #ccc;
+    background-color: #eee;
     color: #222;
     padding: 70% 10%;
-    margin: 50% 0;
+    margin-top: 50%;
 }
 
 .mySkillContainerAdd {
-    width: 150px;
-    height: 150px;
+    width: 15vh;
+    height: 15vh;
     padding: 15px;
     border-radius: 100%;
     -webkit-border-radius: 100%;
     -moz-border-radius: 100%;
     -ms-border-radius: 100%;
     -o-border-radius: 100%;
-    background-color: #ccc;
+    background-color: #eee;
     padding: 70% 10%;
     margin: 50% 0;
 }
@@ -61,7 +61,8 @@
     font-size: 1rem;
     text-align: center;
     color: #ccc;
-    padding: 50% 0;
+    justify-content: center;
+    margin: auto;
 }
 
 .mySkillRateAdd {
@@ -69,4 +70,14 @@
     text-align: center;
     color: #ccc;
     padding: 44% 0;
+}
+
+.myRateContainer {
+    width: 15vh;
+    padding: 15px;
+    margin: auto;
+}
+
+.putRate{
+    color: #ccc;
 }
