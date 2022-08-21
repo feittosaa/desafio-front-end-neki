@@ -74,10 +74,20 @@
 
 .myRateContainer {
     width: 15vh;
-    padding: 15px;
+    padding: 10px;
     margin: auto;
 }
 
-.putRate{
-    color: #ccc;
+.putRate {
+    background-color: #ccc;
+    width: 12vh;
+    text-align: center;
+    margin: 6px;
+    padding-left: 6px;
+    justify-content: center;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
 }

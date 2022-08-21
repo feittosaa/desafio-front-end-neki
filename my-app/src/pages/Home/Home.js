@@ -1,15 +1,13 @@
-import Header from "../../components/Header/Header";
-import user from "../../assets/user.png"
-import "./Home.css"
-import SkillCard from "../../components/SkillCard/SkillCard";
-import MySkillCard from "../../components/MySkillCard/MySkillCard";
-import plus from "../../assets/plus.png"
-import API from "../../API";
 import { useEffect, useState } from "react";
+import API from "../../API";
+import plus from "../../assets/plus.png";
+import user from "../../assets/user.png";
+import Header from "../../components/Header/Header";
 import ModalSkillAdd from "../../components/ModalSkillAdd/ModalSkillAdd";
 import MySkills from "../../components/MySkills/MySkills";
-import ModalMySkillAdd from "../../components/ModalMySkillAdd/ModalMySkillAdd";
 import MySkillsAdd from "../../components/MySkillsAdd/MySkillsAdd";
+import SkillCard from "../../components/SkillCard/SkillCard";
+import "./Home.css";
 
 function Home() {
 
@@ -39,7 +37,6 @@ function Home() {
         catchData();
     }, []);
 
-    const arrayMySkill = mySkill;
     const arraySkill = skill;
 
     return (

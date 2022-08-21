@@ -1,4 +1,5 @@
 import { Input } from "@material-ui/core";
+import * as React from 'react';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../../API";
@@ -11,7 +12,6 @@ function MySkillCard({ skill, knowledgeLevel, setKnowledgeLevel }) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     var navigate = useNavigate();
-
 
     function deletar(e) {
         e.preventDefault();
@@ -61,11 +61,11 @@ function MySkillCard({ skill, knowledgeLevel, setKnowledgeLevel }) {
             <div className="myRateContainer" title="Clique para Alterar">
                 <h4 className="mySkillRate">{knowledgeLevel}</h4>
                 <Input
-                    placeholder="aaaa:"
+                    placeholder="Nivel:"
                     className="putRate"
                     type="text"
                     onChange={(e) => setKnowledgeLevel(e.target.value)}
-                    onSubmit={(e) => alterar()}
+                    onSubmit={(e) => setKnowledgeLevel(e.target.value) && alterar()}
                 />
             </div>
         </div>

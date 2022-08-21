@@ -1,57 +1,43 @@
-import { yupResolver } from '@hookform/resolvers/yup';
 import IconButton from "@material-ui/core/IconButton";
 import Input from "@material-ui/core/Input";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
-import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
-import * as yup from "yup";
+import useAuth from '../../hooks/useAuth';
 import "./Login.css";
 
 
-function Login() {
+const Login = ({ signed }) => {
 
-    const [usuario, setUsuario] = useState('')
-    const [senha, setSenha] = useState('')
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const { signin } = useAuth();
     const navigate = useNavigate()
 
-    const validationLogin = yup.object({
-        usuario: yup.string().required("Campo obrigatório !"),
-        senha: yup.string().required("Campo obrigatório !")
-
-    }).required();
-
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm({
-        resolver: yupResolver(validationLogin),
-    });
+    const [usuario, setUsuario] = useState("");
+    const [senha, setSenha] = useState("");
+    const [error, setError] = useState("");
 
     const handleLogin = (e) => {
         e.preventDefault();
 
-        if (usuario != "" && senha != "") {
-            localStorage.setItem('email', usuario);
-            localStorage.setItem('senha', senha);
-            navigate('/home')
-        } else {
-            setShow(true)
+        if (!usuario | !senha) {
+
+            setError("Preencha todos os campos");
+            return;
         }
 
-    }
+        const res = signin(usuario, senha);
 
-    const entrar = evt => {
-        evt.preventDefault()
-        console.log(usuario)
-        console.log(senha)
-    }
+        if (res) {
+            setError(res);
+            return;
+        }
+
+        navigate("/home");
+        return signed = true;
+
+    };
 
     const [valuesPassword, setValuesPassword] = React.useState({
         password: "",
@@ -75,24 +61,24 @@ function Login() {
         <>
             <div className="cardLogin">
                 <div className="loginContainer">
-                    <Form onSubmit={handleSubmit(handleLogin)}>
+                    <Form >
                         <div>
                             <label className="senhaInput">Usuário</label>
                             <Input
+                                type="usuario"
+                                placeholder='Insira o Usuário'
                                 className="Input"
-                                {...register("usuario")}
-                                onChange={evt => setUsuario(evt.target.value)}
                                 value={usuario}
+                                onChange={(e) => [setUsuario(e.target.value), setError("")]}
                             />
-                            <p className="error-message">{errors.usuario?.message}</p>
                         </div>
                         <div>
                             <label className="senhaInput">Senha</label>
                             <Input
                                 type={valuesPassword.showPassword ? "text" : "password"}
+                                placeholder='Insira a Senha'
                                 className="Input"
-                                {...register("senha")}
-                                onChange={evt => setSenha(evt.target.value)}
+                                onChange={(e) => [setSenha(e.target.value), setError("")]}
                                 value={senha}
                                 endAdornment={
                                     <inputAdornment>
@@ -102,13 +88,13 @@ function Login() {
                                     </inputAdornment>
                                 }
                             />
-                            <p className="error-message">{errors.senha?.message}</p>
+                            <p className='errorLogin'>{error}</p>
                         </div>
-                        <a onClick={handleLogin} className="textoLogin">
-                            <button type="submit" className="botaoLogin">
+                        <div className="textoLogin">
+                            <button type="submit" className="botaoLogin" onClick={handleLogin}>
                                 Login
                             </button>
-                        </a>
+                        </div>
                     </Form>
                     <a className="textoConta" href='/cadastrar'>
                         Criar conta

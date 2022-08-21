@@ -33,6 +33,7 @@
 .Input {
     width: 365px;
     height: 36px;
+    padding-left: 2%;
     margin-top: 2%;
     background: #eee;
     border-radius: 6px;
@@ -66,7 +67,7 @@
     font-size: 20px;
     border-radius: 6px;
     line-height: 24px;
-    padding-top: 5px;
+    padding-top: 4px;
     align-items: center;
     text-align: center;
     color: #000000;
@@ -76,14 +77,19 @@
     -moz-border-radius: 6px;
     -ms-border-radius: 6px;
     -o-border-radius: 6px;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
-.textoConta{
+.textoConta {
     color: #eee;
     text-decoration: none;
 }
 
-.textoConta:hover{
+.textoConta:hover {
     color: #666;
+}
+
+.errorLogin {
+    margin-top: 10px;
+    color: red;
 }

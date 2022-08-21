@@ -39,11 +39,11 @@ export default function ModalSkillAdd({ show, handleClose }) {
         resolver: yupResolver(validationPost),
     });
 
-    function createSkill(e) {
+    function createMySkill(e) {
         e.preventDefault();
-        API.post(`/api/skills`, {
+        API.post(`/api/userSkills`, {
             skill: skill,
-            knowledgeLevel: knowledgeLevel,
+            knowledgeLevel: knowledgeLevel
         },
             {
                 headers: {
@@ -68,7 +68,7 @@ export default function ModalSkillAdd({ show, handleClose }) {
     return (
         <Modal show={show} onHide={handleClose}>
             <Modal.Body className='modalBody'>
-                <Form onSubmit={handleSubmit(createSkill)}>
+                <Form onSubmit={handleSubmit(createMySkill)}>
                     <div>
                         <div className="titulo"><b>Skill*</b></div>
                         <input
@@ -92,7 +92,7 @@ export default function ModalSkillAdd({ show, handleClose }) {
                     </div>
                     <Modal.Footer className="ModalFooter">
                         <div className="botaoCriar botoesModal">
-                            <button className='stylesButton' type="submit" onClick={(e) => createSkill(e)}>
+                            <button className='stylesButton' type="submit" onClick={(e) => createMySkill(e)}>
                                 <img className="salvar" src={save} alt="create" />
                                 Criar
                             </button>
