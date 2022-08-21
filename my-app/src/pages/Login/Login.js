@@ -33,7 +33,6 @@ const Login = () => {
         }
 
         navigate("/home");
-       
     };
 
     const [valuesPassword, setValuesPassword] = React.useState({
@@ -41,17 +40,8 @@ const Login = () => {
         showPassword: false,
     });
 
-    const [valuesLogin, setValuesLogin] = React.useState({
-        login: "",
-        showLogin: false,
-    });
-
-
     const handleClickShowPassword = () => {
         setValuesPassword({ ...valuesPassword, showPassword: !valuesPassword.showPassword });
-    };
-    const handleClickShowLogin = () => {
-        setValuesLogin({ ...valuesLogin, showLogin: !valuesLogin.showLogin });
     };
 
     return (
