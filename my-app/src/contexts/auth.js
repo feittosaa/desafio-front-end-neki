@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
                 setUser({ usuario, senha });
                 return;
             } else {
-                return "Usuário ou senha incorretos";
+                return "Usuario ou senha incorretos";
             }
         } else {
             return "Usuário não cadastrado";

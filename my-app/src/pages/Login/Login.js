@@ -9,7 +9,7 @@ import useAuth from '../../hooks/useAuth';
 import "./Login.css";
 
 
-const Login = ({ signed }) => {
+const Login = () => {
 
     const { signin } = useAuth();
     const navigate = useNavigate()
@@ -20,9 +20,7 @@ const Login = ({ signed }) => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-
         if (!usuario | !senha) {
-
             setError("Preencha todos os campos");
             return;
         }
@@ -35,8 +33,7 @@ const Login = ({ signed }) => {
         }
 
         navigate("/home");
-        return signed = true;
-
+       
     };
 
     const [valuesPassword, setValuesPassword] = React.useState({
